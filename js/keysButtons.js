@@ -2,20 +2,36 @@ class KeyButton {
     constructor(ctx) {
         this.ctx = ctx
 
-        this.x = 0
-        this.y = 170
+        this.x = 25
+        this.y = 38
 
         this.width = 120
         this.height = 30
 
+        this.keyScore = 0
+
         this.colorq = '#444'
+
+        this.img = new Image()
+        this.img.src = "./img/marcos-loL-1.png"
+        this.img.isReady = false
+    
+        this.img.onload = () => this.img.isReady = true
+
+
+        this.imgActive = new Image()
+        this.imgActive.src = "./img/active-marcos-lol.png"
+        this.imgActive.isReady = false
+    
+        this.imgActive.onload = () => this.imgActive.isReady = true
 
         this.statusKey = {
             global: false,
             q: {
                 active: false,
                 keyCode: KEY_Q,
-                color: 'blue'
+                color: 'blue',
+                img: "./img/marcos-loL-1.png",
             },
             w: {
                 active: false,
@@ -36,25 +52,79 @@ class KeyButton {
     }
 
     draw() {
-        this.ctx.save()
-        this.ctx.fillStyle = this.statusKey.q.color
-        this.ctx.fillRect(this.x, this.y, this.width, this.height)
-        this.ctx.restore()
+        this.ctx.drawImage(
+            this.img,
+            this.x,
+            this.y,
+            85,
+            100
+        )
 
-        this.ctx.save()
-        this.ctx.fillStyle = this.statusKey.w.color
-        this.ctx.fillRect(this.x, this.y + 60, this.width, this.height)
-        this.ctx.restore()
+        if(this.statusKey.q.active) {
+            this.ctx.drawImage(
+                this.imgActive,
+                this.x,
+                this.y,
+                85,
+                100
+            )
+        }
 
-        this.ctx.save()
-        this.ctx.fillStyle = this.statusKey.e.color
-        this.ctx.fillRect(this.x, this.y + 120, this.width, this.height)
-        this.ctx.restore()
+        this.ctx.drawImage(
+            this.img,
+            this.x,
+            this.y + 125,
+            85,
+            100
+        )
 
-        this.ctx.save()
-        this.ctx.fillStyle = this.statusKey.r.color
-        this.ctx.fillRect(this.x, this.y + 180, this.width, this.height)
-        this.ctx.restore()
+        if(this.statusKey.w.active) {
+            this.ctx.drawImage(
+                this.imgActive,
+                this.x,
+                this.y + 125,
+                85,
+                100
+            )
+        }
+
+        this.ctx.drawImage(
+            this.img,
+            this.x,
+            this.y + 250,
+            85,
+            100
+        )
+
+        if(this.statusKey.e.active) {
+            this.ctx.drawImage(
+                this.imgActive,
+                this.x,
+                this.y + 250,
+                85,
+                100
+            )
+        }
+        
+
+        this.ctx.drawImage(
+            this.img,
+            this.x,
+            this.y + 375,
+            85,
+            100
+        )
+
+        if(this.statusKey.r.active) {
+            this.ctx.drawImage(
+                this.imgActive,
+                this.x,
+                this.y + 375,
+                85,
+                100
+            )
+        }
+
     }
 
     changeStatebyTime(key) {
@@ -92,6 +162,8 @@ class KeyButton {
                     this.statusKey.q.color = '#444'
                     this.statusKey.q.active = false
                     this.statusKey.global = false
+                    window.score += 30
+                    
                 } 
                 break
             
@@ -100,6 +172,8 @@ class KeyButton {
                     this.statusKey.w.color = '#444'
                     this.statusKey.w.active = false
                     this.statusKey.global = false
+                    window.score += 30
+                    
                 } 
                 break
    
@@ -108,6 +182,8 @@ class KeyButton {
                     this.statusKey.e.color = '#444'
                     this.statusKey.e.active = false
                     this.statusKey.global = false
+                    window.score += 30
+                    
                 } 
                 break
 
@@ -116,6 +192,8 @@ class KeyButton {
                     this.statusKey.r.color = '#444'
                     this.statusKey.r.active = false
                     this.statusKey.global = false
+                    window.score += 30
+                    
                 } 
                 break
         }

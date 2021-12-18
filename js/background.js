@@ -13,6 +13,14 @@ class Background {
         this.img.isReady = false
     
         this.img.onload = () => this.img.isReady = true
+
+        this.xScore = 826
+
+        this.imgScore = new Image()
+        this.imgScore.src = "./img/lolScore.png"
+        this.imgScore.isReady = false
+    
+        this.imgScore.onload = () => this.imgScore.isReady = true
     }
 
     draw() {
@@ -23,6 +31,15 @@ class Background {
                 this.y,
                 this.width,
                 this.height
+            )
+        }
+        if (this.imgScore.isReady) {
+            this.ctx.drawImage(
+                this.imgScore,
+                this.xScore,
+                this.y,
+                234,
+                43
             )
         }
     }

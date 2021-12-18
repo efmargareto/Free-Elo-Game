@@ -14,6 +14,8 @@ class Game {
 
         this.changeColortime = 0
         this.changeActiveTime = 100 + Math.floor(Math.random() * 30)
+
+        window.score = 0
     }
 
     start() {
@@ -51,12 +53,15 @@ class Game {
         const now = new Date().getTime()
         this.obstacles = this.obstacles.filter(obstacle => now - obstacle.date <= 2000)
         this.obstacles = this.obstacles.filter(obstacle => obstacle.isClick !== true)
+
+        window.score
     }
 
     draw() {
         this.background.draw()
         this.keyButton.draw()
         this.obstacles.forEach(obstacle => obstacle.draw())
+        this.drawScore()
     }
 
     activeButtons(key) {
@@ -74,17 +79,13 @@ class Game {
             if (elem.x <= x && elem.x + elem.width >= x && 
                 elem.y <= y && elem.y + elem.height >= y) {
                 elem.isClick = true
+                window.score += 10
             } else{
                 console.log('FALSE')
             }
-            
-            console.log(elem.x + elem.width)
-            console.log(elem.y + elem.height)
-
-            console.log('click position X ----> ' + x)
-            console.log('click position Y ----> ' + y)
         })
     }
+    
 
     addObstacle() {
         const maxY = this.ctx.canvas.height - 250
@@ -99,4 +100,15 @@ class Game {
           new Obstacle(this.ctx, x, y, date)
         )
     }
+
+    drawScore() {
+        this.ctx.save()
+    
+        this.ctx.fillStyle = '#fff'
+        this.ctx.font = ' bold 22px sans-serif'
+    
+        this.ctx.fillText(`${window.score}`, 890, 28)
+    
+        this.ctx.restore()
+      }
 }
