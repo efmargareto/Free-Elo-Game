@@ -119,7 +119,7 @@ class Game {
     
         this.ctx.save()
         
-        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+        this.ctx.fillStyle = 'rgba(1, 64, 62, 0.4)'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     
         this.ctx.fillStyle = 'white'

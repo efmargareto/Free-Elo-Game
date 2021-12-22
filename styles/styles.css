@@ -4,8 +4,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('./../img/background-game.jpeg');
-    background-color: #1d6d6a;
+    /* background: url('./../img/background-game.jpeg'); */
+    background: #01403e;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,7 +13,8 @@ body {
     margin: 0;
 }
 body.active {
-    background: #01403e;
+    
+    background-color: #176360;
     transition: 0.5s ease-in;
 }
 
@@ -22,7 +23,85 @@ body.active {
 }
 
 body.active #canvas {
+
+    transition: background-color 0.2s ease-in;
+    border: 3px solid #6b5835;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 75%);
+}
+
+#startGame-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 950px;
+    height: 550px;
     border: 3px solid #6b5835;
     box-shadow: 0 5px 10px 0 rgb(0 0 0 / 75%);
     transition: 0.5s ease-in;
+    background: url('./../img/background-game.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+body.active #startGame-block {
+    display: none;
+}
+
+#startGame {
+    position: relative;
+    cursor: pointer;
+    height: 56px;
+    background: #6b5835;
+    font-weight: 700;
+    border: none;
+    width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 2px 1.5px rgb(0 0 0 / 5%);
+    color: #fff;
+    margin-top: -250px;
+}
+
+#startGame::after {
+    content: "";
+    position: absolute;
+    height: calc(100% + 20px);
+    width: calc(100% + 20px);
+    top: -10px;
+    left: -10px;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    border-radius: 15px 0 15px 0;
+    transition: 0.2s ease-in;
+}
+
+#startGame:hover::after {
+    border-radius: 0;
+}
+
+
+@font-face {
+    font-family: "lol typografy";
+    src: url("../img/loltypoMedium.otf");
+}
+
+h1 {
+    font-family: "lol typografy";
+    font-size: 150%;
+    font-size: 80px;
+    text-transform: uppercase;
+    color: #6b5835;
+    width: 100%;
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    margin-top: 120px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
