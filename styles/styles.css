@@ -1,3 +1,28 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('./../img/background-game.jpeg');
+    background-color: #1d6d6a;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 0.5s ease-in;
+    margin: 0;
+}
+body.active {
+    background: #01403e;
+    transition: 0.5s ease-in;
+}
+
 #canvas {
-    border: 1px dotted #444;
+    transition: 0.5s ease-in;
+}
+
+body.active #canvas {
+    border: 3px solid #6b5835;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 75%);
+    transition: 0.5s ease-in;
 }

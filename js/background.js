@@ -14,7 +14,8 @@ class Background {
     
         this.img.onload = () => this.img.isReady = true
 
-        this.xScore = 826
+        this.xScore = 820
+        this.yScore = 50
 
         this.imgScore = new Image()
         this.imgScore.src = "./img/lolScore.png"
@@ -37,9 +38,9 @@ class Background {
             this.ctx.drawImage(
                 this.imgScore,
                 this.xScore,
-                this.y,
-                234,
-                43
+                this.yScore,
+                119,
+                141
             )
         }
     }

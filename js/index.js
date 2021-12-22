@@ -6,6 +6,7 @@ const game = new Game(ctx)
 const startButton = document.getElementById('startGame')
 startButton.onclick = () => {
   game.start()
+  document.querySelector('body').classList.add('active')
 }
 
 window.addEventListener('keydown', (event) => {

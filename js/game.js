@@ -9,6 +9,8 @@ class Game {
         this.background = new Background(ctx)
         this.keyButton = new KeyButton(ctx)
 
+        this.startDate = new Date().getTime()
+
         this.obstacles = []    
         this.obstacleFramesCount = 0
 
@@ -21,27 +23,30 @@ class Game {
     start() {
         if (!this.intervalId) {
             this.intervalId = setInterval(() => {
-
                 if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
                     this.addObstacle()
                     this.obstacleFramesCount = 0
                 }
-
+                
                 if (this.changeColortime === 100 + this.changeActiveTime &&
                     this.keyButton.statusKey.global === false ) {
-
-                    const ramdonKey = ['q','w','e','r']
-                    this.activeButtons(ramdonKey[Math.floor(Math.random() * 5)])
+                        
+                        const ramdonKey = ['q','w','e','r']
+                        this.activeButtons(ramdonKey[Math.floor(Math.random() * 5)])
+                        
+                        this.changeActiveTime = 10 + Math.floor(Math.random() * 50)
+                        this.changeColortime = 0
+                    }
                     
-                    this.changeActiveTime = 100 + Math.floor(Math.random() * 50)
-                    this.changeColortime = 0
-                }
- 
                 this.clear()
                 this.draw()
                 
                 this.obstacleFramesCount++
                 this.changeColortime++
+                
+                const nowGAME = new Date().getTime()
+                if ( nowGAME - this.startDate >= 50000)  this.gameOver()
+    
                 
             }, this.fps);
         }
@@ -51,7 +56,7 @@ class Game {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     
         const now = new Date().getTime()
-        this.obstacles = this.obstacles.filter(obstacle => now - obstacle.date <= 2000)
+        this.obstacles = this.obstacles.filter(obstacle => now - obstacle.date <= 800)
         this.obstacles = this.obstacles.filter(obstacle => obstacle.isClick !== true)
 
         window.score
@@ -73,15 +78,11 @@ class Game {
     }
 
     clickOnObstacle(x, y) {
-        console.log(this.obstacles)
         this.obstacles.forEach( elem => {
-
             if (elem.x <= x && elem.x + elem.width >= x && 
                 elem.y <= y && elem.y + elem.height >= y) {
                 elem.isClick = true
                 window.score += 10
-            } else{
-                console.log('FALSE')
             }
         })
     }
@@ -105,9 +106,26 @@ class Game {
         this.ctx.save()
     
         this.ctx.fillStyle = '#fff'
-        this.ctx.font = ' bold 22px sans-serif'
+        this.ctx.font = ' bold 26px sans-serif'
     
-        this.ctx.fillText(`${window.score}`, 890, 28)
+        this.ctx.fillText(`${window.score}`, 867, 45)
+    
+        this.ctx.restore()
+      }
+
+
+      gameOver() {
+        clearInterval(this.intervalId)
+    
+        this.ctx.save()
+        
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    
+        this.ctx.fillStyle = 'white'
+        this.ctx.textAlign = 'center'
+        this.ctx.font = 'bold 32px sans-serif'
+        this.ctx.fillText(`Tu puntuación es: ${window.score}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
     
         this.ctx.restore()
       }

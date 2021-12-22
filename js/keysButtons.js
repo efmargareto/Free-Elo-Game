@@ -15,38 +15,41 @@ class KeyButton {
         this.img = new Image()
         this.img.src = "./img/marcos-loL-1.png"
         this.img.isReady = false
-    
-        this.img.onload = () => this.img.isReady = true
 
+        this.imgActiveQ = new Image()
+        this.imgActiveQ.src = "./img/active-marcos-lol-Q.png"
+        this.imgActiveQ.isReady = false
 
-        this.imgActive = new Image()
-        this.imgActive.src = "./img/active-marcos-lol.png"
-        this.imgActive.isReady = false
-    
-        this.imgActive.onload = () => this.imgActive.isReady = true
+        this.imgActiveW = new Image()
+        this.imgActiveW.src = "./img/active-marcos-lol-W.png"
+        this.imgActiveW.isReady = false
+
+        this.imgActiveE = new Image()
+        this.imgActiveE.src = "./img/active-marcos-lol-E.png"
+        this.imgActiveE.isReady = false
+
+        this.imgActiveR = new Image()
+        this.imgActiveR.src = "./img/active-marcos-lol-R.png"
+        this.imgActiveR.isReady = false
+
 
         this.statusKey = {
             global: false,
             q: {
                 active: false,
                 keyCode: KEY_Q,
-                color: 'blue',
-                img: "./img/marcos-loL-1.png",
             },
             w: {
                 active: false,
                 keyCode: KEY_W,
-                color: 'blue'
             },
             e: {
                 active: false,
                 keyCode: KEY_E,
-                color: 'blue'
             },
             r: {
                 active: false,
                 keyCode: KEY_R,
-                color: 'blue'
             }
         }
     }
@@ -62,7 +65,7 @@ class KeyButton {
 
         if(this.statusKey.q.active) {
             this.ctx.drawImage(
-                this.imgActive,
+                this.imgActiveQ,
                 this.x,
                 this.y,
                 85,
@@ -80,7 +83,7 @@ class KeyButton {
 
         if(this.statusKey.w.active) {
             this.ctx.drawImage(
-                this.imgActive,
+                this.imgActiveW,
                 this.x,
                 this.y + 125,
                 85,
@@ -98,7 +101,7 @@ class KeyButton {
 
         if(this.statusKey.e.active) {
             this.ctx.drawImage(
-                this.imgActive,
+                this.imgActiveE,
                 this.x,
                 this.y + 250,
                 85,
@@ -117,7 +120,7 @@ class KeyButton {
 
         if(this.statusKey.r.active) {
             this.ctx.drawImage(
-                this.imgActive,
+                this.imgActiveR,
                 this.x,
                 this.y + 375,
                 85,
